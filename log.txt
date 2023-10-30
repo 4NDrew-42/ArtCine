@@ -1,0 +1,81 @@
+::1 - - [24/Oct/2023:00:12:44 +0000] "GET / HTTP/1.1" 200 27 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [24/Oct/2023:00:13:35 +0000] "GET /movies HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [24/Oct/2023:00:21:41 +0000] "GET /documentation.html HTTP/1.1" 404 157 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [24/Oct/2023:00:22:14 +0000] "GET /documentation.html HTTP/1.1" 200 979 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [24/Oct/2023:00:32:35 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1"
+::1 - - [24/Oct/2023:00:37:14 +0000] "GET /movies HTTP/1.1" - - "-" "Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1"
+::1 - - [24/Oct/2023:00:37:53 +0000] "GET /documentation.html HTTP/1.1" - - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [24/Oct/2023:01:02:42 +0000] "GET /documentation.html HTTP/1.1" - - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [24/Oct/2023:01:09:45 +0000] "GET /documentation.html HTTP/1.1" - - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+URL: /movies
+Timestamp: Mon Oct 30 2023 16:12:56 GMT-0500 (Central Daylight Time)
+
+URL: /
+Timestamp: Mon Oct 30 2023 16:12:59 GMT-0500 (Central Daylight Time)
+
+URL: /
+Timestamp: Mon Oct 30 2023 16:13:21 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:13:38 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:14:04 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:14:54 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:35:51 GMT-0500 (Central Daylight Time)
+
+URL: /movies
+Timestamp: Mon Oct 30 2023 16:39:55 GMT-0500 (Central Daylight Time)
+
+URL: /
+Timestamp: Mon Oct 30 2023 16:39:58 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:42:39 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html/ws
+Timestamp: Mon Oct 30 2023 16:42:39 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:51:10 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html/ws
+Timestamp: Mon Oct 30 2023 16:51:10 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:51:11 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html/ws
+Timestamp: Mon Oct 30 2023 16:51:11 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:52:03 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html/ws
+Timestamp: Mon Oct 30 2023 16:52:03 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:52:03 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html/ws
+Timestamp: Mon Oct 30 2023 16:52:03 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 16:55:34 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html/ws
+Timestamp: Mon Oct 30 2023 16:55:34 GMT-0500 (Central Daylight Time)
+
+URL: /
+Timestamp: Mon Oct 30 2023 17:23:17 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html
+Timestamp: Mon Oct 30 2023 17:23:27 GMT-0500 (Central Daylight Time)
+
+URL: /documentation.html/ws
+Timestamp: Mon Oct 30 2023 17:23:27 GMT-0500 (Central Daylight Time)
+
