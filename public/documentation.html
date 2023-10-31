@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>ArtCine - API Documentation</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				font-size: 14px;
+				line-height: 1.4;
+				margin: 0;
+				padding: 0;
+				color: #333;
+			}
+
+			header {
+				background: #333;
+				color: #fff;
+				padding: 20px;
+			}
+
+			header h1 {
+				margin: 0;
+				padding: 0;
+				font-size: 24px;
+				line-height: 1;
+			}
+
+			header p {
+				font-size: 14px;
+			}
+
+			section {
+				padding: 20px;
+			}
+
+			section h2 {
+				margin-top: 0;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				border: 1px solid #ccc;
+			}
+
+			table thead tr {
+				background: #333;
+				color: #fff;
+			}
+
+			table th,
+			table td {
+				padding: 10px;
+				border: 1px solid #ccc;
+				max-width: 300px;
+				overflow: auto;
+			}
+
+			table tbody tr:nth-child(even) {
+				background: #eee;
+			}
+
+			table tbody tr:hover {
+				background: #ddd;
+			}
+
+			table tbody tr td code {
+				display: block;
+				white-space: pre;
+			}
+
+			footer {
+				background: #333;
+				color: #fff;
+				padding: 20px;
+				text-align: center;
+			}
+
+			footer a {
+				color: #fff;
+			}
+		</style>
+		<style>
+			/* @import must be at top of file, otherwise CSS will not work */
+			/* @import url('//hello.myfonts.net/count/3caa3a'); */
+
+			@font-face {
+				font-family: "Inter";
+				font-style: normal;
+				font-weight: 300;
+				font-display: swap;
+				src: url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-Light.woff2?v=3.19") format("woff2"),
+					url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-Light.woff?v=3.19") format("woff");
+			}
+
+			@font-face {
+				font-family: "Inter";
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-Regular.woff2?v=3.19") format("woff2"),
+					url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-Regular.woff?v=3.19") format("woff");
+			}
+
+			@font-face {
+				font-family: "Inter";
+				font-style: normal;
+				font-weight: 500;
+				font-display: swap;
+				src: url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-Medium.woff2?v=3.19") format("woff2"),
+					url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-Medium.woff?v=3.19") format("woff");
+			}
+
+			@font-face {
+				font-family: "Inter";
+				font-style: normal;
+				font-weight: 600;
+				font-display: swap;
+				src: url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-SemiBold.woff2?v=3.19") format("woff2"),
+					url("chrome-extension://__MSG_@@extension_id__/fonts/Inter/Inter-SemiBold.woff?v=3.19") format("woff");
+			}
+
+			/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hc3NldHMvZm9udHMvZm9udHMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztDQXVCQzs7QUFFRCxnRUFBZ0U7QUFDaEUscURBQXFEOztBQUVyRDtFQUNFLG9CQUFvQjtFQUNwQixrQkFBa0I7RUFDbEIsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQjt1R0FDcUc7QUFDdkc7O0FBRUE7RUFDRSxvQkFBb0I7RUFDcEIsa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEI7eUdBQ3VHO0FBQ3pHOztBQUVBO0VBQ0Usb0JBQW9CO0VBQ3BCLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCO3dHQUNzRztBQUN4Rzs7QUFFQTtFQUNFLG9CQUFvQjtFQUNwQixrQkFBa0I7RUFDbEIsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQjswR0FDd0c7QUFDMUciLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBNeUZvbnRzIFdlYmZvbnQgQnVpbGQgSUQgMzk2MDUxMiwgMjAyMC0xMC0xNFQwOTo0NzoyNy0wNDAwXG4gKlxuICogVGhlIGZvbnRzIGxpc3RlZCBpbiB0aGlzIG5vdGljZSBhcmUgc3ViamVjdCB0byB0aGUgRW5kIFVzZXIgTGljZW5zZVxuICogQWdyZWVtZW50KHMpIGVudGVyZWQgaW50byBieSB0aGUgd2Vic2l0ZSBvd25lci4gQWxsIG90aGVyIHBhcnRpZXMgYXJlXG4gKiBleHBsaWNpdGx5IHJlc3RyaWN0ZWQgZnJvbSB1c2luZyB0aGUgTGljZW5zZWQgV2ViZm9udHMocykuXG4gKlxuICogWW91IG1heSBvYnRhaW4gYSB2YWxpZCBsaWNlbnNlIGF0IHRoZSBVUkxzIGJlbG93LlxuICpcbiAqIFdlYmZvbnQ6IFNvZmlhUHJvLUxpZ2h0IGJ5IE1vc3RhcmRlc2lnblxuICogVVJMOiBodHRwczovL3d3dy5teWZvbnRzLmNvbS9mb250cy9tb3N0YXJkZXNpZ24vc29maWEtcHJvL2xpZ2h0L1xuICpcbiAqIFdlYmZvbnQ6IFNvZmlhUHJvLVJlZ3VsYXIgYnkgTW9zdGFyZGVzaWduXG4gKiBVUkw6IGh0dHBzOi8vd3d3Lm15Zm9udHMuY29tL2ZvbnRzL21vc3RhcmRlc2lnbi9zb2ZpYS1wcm8vcmVndWxhci9cbiAqXG4gKiBXZWJmb250OiBTb2ZpYVByby1NZWRpdW0gYnkgTW9zdGFyZGVzaWduXG4gKiBVUkw6IGh0dHBzOi8vd3d3Lm15Zm9udHMuY29tL2ZvbnRzL21vc3RhcmRlc2lnbi9zb2ZpYS1wcm8vbWVkaXVtL1xuICpcbiAqXG4gKiBXZWJmb250cyBjb3B5cmlnaHQ6IENvcHlyaWdodCDCqSBPbGl2aWVyIEdvdXJ2YXQgLSBNb3N0YXJkZXNpZ24gVHlwZSBGb3VuZHJ5LCAyMDIwLiBBbGwgcmlnaHRzIHJlc2VydmVkLlxuICpcbiAqIMKpIDIwMjAgTXlGb250cyBJbmNcbiovXG5cbi8qIEBpbXBvcnQgbXVzdCBiZSBhdCB0b3Agb2YgZmlsZSwgb3RoZXJ3aXNlIENTUyB3aWxsIG5vdCB3b3JrICovXG4vKiBAaW1wb3J0IHVybCgnLy9oZWxsby5teWZvbnRzLm5ldC9jb3VudC8zY2FhM2EnKTsgKi9cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnSW50ZXInO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiAzMDA7XG4gIGZvbnQtZGlzcGxheTogc3dhcDtcbiAgc3JjOiB1cmwoJ2Nocm9tZS1leHRlbnNpb246Ly9fX01TR19AQGV4dGVuc2lvbl9pZF9fL2ZvbnRzL0ludGVyL0ludGVyLUxpZ2h0LndvZmYyP3Y9My4xOScpIGZvcm1hdCgnd29mZjInKSxcbiAgICB1cmwoJ2Nocm9tZS1leHRlbnNpb246Ly9fX01TR19AQGV4dGVuc2lvbl9pZF9fL2ZvbnRzL0ludGVyL0ludGVyLUxpZ2h0LndvZmY/dj0zLjE5JykgZm9ybWF0KCd3b2ZmJyk7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0ludGVyJztcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xuICBmb250LXdlaWdodDogNDAwO1xuICBmb250LWRpc3BsYXk6IHN3YXA7XG4gIHNyYzogdXJsKCdjaHJvbWUtZXh0ZW5zaW9uOi8vX19NU0dfQEBleHRlbnNpb25faWRfXy9mb250cy9JbnRlci9JbnRlci1SZWd1bGFyLndvZmYyP3Y9My4xOScpIGZvcm1hdCgnd29mZjInKSxcbiAgICB1cmwoJ2Nocm9tZS1leHRlbnNpb246Ly9fX01TR19AQGV4dGVuc2lvbl9pZF9fL2ZvbnRzL0ludGVyL0ludGVyLVJlZ3VsYXIud29mZj92PTMuMTknKSBmb3JtYXQoJ3dvZmYnKTtcbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnSW50ZXInO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGZvbnQtZGlzcGxheTogc3dhcDtcbiAgc3JjOiB1cmwoJ2Nocm9tZS1leHRlbnNpb246Ly9fX01TR19AQGV4dGVuc2lvbl9pZF9fL2ZvbnRzL0ludGVyL0ludGVyLU1lZGl1bS53b2ZmMj92PTMuMTknKSBmb3JtYXQoJ3dvZmYyJyksXG4gICAgdXJsKCdjaHJvbWUtZXh0ZW5zaW9uOi8vX19NU0dfQEBleHRlbnNpb25faWRfXy9mb250cy9JbnRlci9JbnRlci1NZWRpdW0ud29mZj92PTMuMTknKSBmb3JtYXQoJ3dvZmYnKTtcbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnSW50ZXInO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIGZvbnQtZGlzcGxheTogc3dhcDtcbiAgc3JjOiB1cmwoJ2Nocm9tZS1leHRlbnNpb246Ly9fX01TR19AQGV4dGVuc2lvbl9pZF9fL2ZvbnRzL0ludGVyL0ludGVyLVNlbWlCb2xkLndvZmYyP3Y9My4xOScpIGZvcm1hdCgnd29mZjInKSxcbiAgICB1cmwoJ2Nocm9tZS1leHRlbnNpb246Ly9fX01TR19AQGV4dGVuc2lvbl9pZF9fL2ZvbnRzL0ludGVyL0ludGVyLVNlbWlCb2xkLndvZmY/dj0zLjE5JykgZm9ybWF0KCd3b2ZmJyk7XG59XG4iXSwic291cmNlUm9vdCI6IiJ9 */
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>James Klein - ArtCine - API Documentation</h1>
+			<p>This API allows the browsing of movies, including viewing information, favoriting, deleting favorites.s</p>
+		</header>
+
+		<section>
+			<h2>Introduction</h2>
+			<p>Welcome to the ArtCine API! This API provides endpoints for CRUD operations (Create, Read, Update, Delete) for movie data. Below you'll find a detailed guide for each endpoint.</p>
+		</section>
+
+		<section>
+			<h2>Base URL</h2>
+			<p>
+				All endpoints stem from the base URL:
+				<code>***</code>
+			</p>
+		</section>
+		<table>
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Endpoint</th>
+					<th>HTTP Method</th>
+					<th>Parameters</th>
+					<th>Request Example</th>
+					<th>Response Example</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>List of all movies</td>
+					<td><code>/movies</code></td>
+					<td>GET</td>
+					<td>None</td>
+					<td><code>GET /movies</code></td>
+					<td>JSON response with a list of movies</td>
+				</tr>
+				<tr>
+					<td>Single movie details</td>
+					<td><code>/movies/:title</code></td>
+					<td>GET</td>
+					<td><code>title</code></td>
+					<td><code>GET /movies/Inception</code></td>
+					<td>JSON response with details about the movie, including title, description, genre, director, actors, image URL, and whether or not the movie is favorited by the user</td>
+				</tr>
+				<tr>
+					<td>Details about a genre</td>
+					<td><code>/movies/genre/:name</code></td>
+					<td>GET</td>
+					<td><code>name</code></td>
+					<td><code>GET /genre/Thriller</code></td>
+					<td>JSON response with details about the genre</td>
+				</tr>
+				<tr>
+					<td>Details about a director</td>
+					<td><code>/movies/director/:name</code></td>
+					<td>GET</td>
+					<td><code>name</code></td>
+					<td><code>GET /director/Christopher%20Nolan</code></td>
+					<td>JSON response with details about the director</td>
+				</tr>
+				<tr>
+					<td>User registration</td>
+					<td><code>/users</code></td>
+					<td>POST</td>
+					<td><code>username, password</code></td>
+					<td><code>POST /users {"username": "JohnDoe", "password": "pass123"}</code></td>
+					<td>JSON response confirming user registration</td>
+				</tr>
+				<tr>
+					<td>Update user details</td>
+					<td><code>/users/:username</code></td>
+					<td>PUT</td>
+					<td><code>username</code></td>
+					<td><code>PUT /users/JohnDoe {"newUsername": "JaneDoe"}</code></td>
+					<td>JSON response confirming username update</td>
+				</tr>
+				<tr>
+					<td>Add movie to favorites</td>
+					<td><code>/users/:username/favorites/:movieId</code></td>
+					<td>POST</td>
+					<td><code>username, movieId</code></td>
+					<td><code>POST /JohnDoe/favorites/{movie}</code></td>
+					<td>Text confirming movie has been added to favorites</td>
+				</tr>
+				<tr>
+					<td>Remove movie from favorites</td>
+					<td><code>/users/:username/favorites/:movieId</code></td>
+					<td>DELETE</td>
+					<td><code>username, movieId</code></td>
+					<td><code>DELETE /favorites/JohnDoe/42</code></td>
+					<td>Text confirming movie has been removed from favorites</td>
+				</tr>
+				<tr>
+					<td>Delete a user</td>
+					<td><code>/users/:username</code></td>
+					<td>DELETE</td>
+					<td><code>username</code></td>
+					<td><code>DELETE /users/JohnDoe</code></td>
+					<td>Text confirming user has been deregistered</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<section>
+			<h2>Additional Notes</h2>
+			<p>Ensure that your requests include proper authentication headers if needed. Any queries must be URL-encoded.</p>
+		</section>
+
+		<footer>
+			<p>
+				For additional support, contact
+				<a href="mailto:support@example.com">support@example.com</a>
+			</p>
+		</footer>
+		<script>
+			// <![CDATA[  <-- For SVG support
+			if ("WebSocket" in window) {
+				(function () {
+					function refreshCSS() {
+						var sheets = [].slice.call(document.getElementsByTagName("link"));
+						var head = document.getElementsByTagName("head")[0];
+						for (var i = 0; i < sheets.length; ++i) {
+							var elem = sheets[i];
+							var parent = elem.parentElement || head;
+							parent.removeChild(elem);
+							var rel = elem.rel;
+							if ((elem.href && typeof rel != "string") || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+								var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, "");
+								elem.href = url + (url.indexOf("?") >= 0 ? "&" : "?") + "_cacheOverride=" + new Date().valueOf();
+							}
+							parent.appendChild(elem);
+						}
+					}
+					var protocol = window.location.protocol === "http:" ? "ws://" : "wss://";
+					var address = protocol + window.location.host + window.location.pathname + "/ws";
+					var socket = new WebSocket(address);
+					socket.onmessage = function (msg) {
+						if (msg.data == "reload") window.location.reload();
+						else if (msg.data == "refreshcss") refreshCSS();
+					};
+					if (sessionStorage && !sessionStorage.getItem("IsThisFirstTime_Log_From_LiveServer")) {
+						console.log("Live reload enabled.");
+						sessionStorage.setItem("IsThisFirstTime_Log_From_LiveServer", true);
+					}
+				})();
+			} else {
+				console.error("Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.");
+			}
+			// ]]>
+		</script>
+	</body>
+</html>
