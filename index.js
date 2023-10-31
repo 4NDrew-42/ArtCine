@@ -8,9 +8,10 @@ const uuid = require("uuid");
 const methodOverride = require("method-override");
 
 const app = express();
+
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), { flags: "a" });
 
-let movies = [
+const movieDataJSON = [
 	{
 		title: "Inception",
 		description: "A thief enters the dreams of others to steal secrets.",
@@ -103,6 +104,25 @@ let movies = [
 	},
 ];
 
+const userDataJSON = [
+	{
+		username: "user1",
+		password: "password1",
+		email: "1@a.net",
+		favorites: ["The Dark Knight", "Titanic"],
+	},
+	{
+		username: "user2",
+		password: "password2",
+		email: "2@a.net",
+		favorites: ["The Shawshank Redemption", "The Dark Knight"],
+	},
+];
+
+const movieData = JSON.parse(JSON.stringify(movieDataJSON));
+
+const userData = JSON.parse(JSON.stringify(userDataJSON));
+
 app.use(express.static("public"));
 
 // Combines logging info from request and response
@@ -124,7 +144,11 @@ app.get("/secreturl", (req, res) => {
 });
 
 app.get("/movies", (req, res) => {
-	res.json(movies);
+	res.json(movieData);
+});
+
+app.get("/users", (req, res) => {
+	res.json(userData);
 });
 
 app.use(
@@ -135,6 +159,51 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(methodOverride());
+
+// #1 JSON data for movies
+app.get("/movies", (req, res) => {
+	res.send("Successful GET request returning data on all the movies");
+});
+
+// #2 JSON data for a single movie by title
+app.get("/movies/:title", (req, res) => {
+	res.send("Successful GET request returning data on a single movie");
+});
+
+// #3 JSON data for a genre by name
+app.get("/movies/genre/:name", (req, res) => {
+	res.send("Successful GET request returning data on a genre by name");
+});
+
+// #4 JSON data for a director by name
+app.get("/movies/director/:name", (req, res) => {
+	res.send("Successful GET request returning data on a director by name");
+});
+
+// #5 Create a new user
+app.post("/users/", (req, res) => {
+	res.send("Successful POST request creating a new user");
+});
+
+// #6 Update a user's info by username
+app.put("/users/:username", (req, res) => {
+	res.send("Successful PUT request updating a user's info by username");
+});
+
+// #7 Add a movie to a user's list of favorites
+app.post("/users/:username/favorites", (req, res) => {
+	res.send("Successful POST request adding a movie to a user's list of favorites");
+});
+
+// #8 Remove a movie from a user's list of favorites
+app.delete("/users/:username/favorites/:title", (req, res) => {
+	res.send("Successful DELETE request removing a movie from a user's list of favorites");
+});
+
+// #9 Delete a user by username
+app.delete("/users/:username", (req, res) => {
+	res.send("Successful DELETE request deleting a user by username");
+});
 
 app.use((err, req, res, next) => {
 	console.error(err.stack);
