@@ -187,3 +187,8 @@ Timestamp: Mon Oct 30 2023 18:50:24 GMT-0500 (Central Daylight Time)
 ::1 - - [31/Oct/2023:06:48:53 +0000] "DELETE /users/JohnDoe HTTP/1.1" 200 53 "-" "PostmanRuntime/7.34.0"
 ::1 - - [31/Oct/2023:06:49:32 +0000] "DELETE /users/JohnDoe HTTP/1.1" 500 16 "-" "PostmanRuntime/7.34.0"
 ::1 - - [31/Oct/2023:06:49:46 +0000] "DELETE /users/user2 HTTP/1.1" 500 16 "-" "PostmanRuntime/7.34.0"
+::1 - - [31/Oct/2023:07:41:42 +0000] "GET /movies HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [31/Oct/2023:07:41:51 +0000] "GET /documentation HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [31/Oct/2023:07:41:51 +0000] "GET /documentation/ws HTTP/1.1" 404 155 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [08/Nov/2023:07:00:15 +0000] "GET /documentation HTTP/1.1" 200 11829 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [08/Nov/2023:07:00:15 +0000] "GET /documentation/ws HTTP/1.1" 404 155 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"

@@ -1,13 +1,21 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const uuid = require("uuid");
 const methodOverride = require("method-override");
+const mongoose = require("mongoose");
+const Models = require("./models.js");
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect("mongodb://localhost:27017/ACDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), { flags: "a" });
 
@@ -147,8 +155,16 @@ app.get("/movies", (req, res) => {
 	res.json(movieData);
 });
 
-app.get("/users", (req, res) => {
-	res.json(userData);
+// Get all users
+app.get("/users", async (req, res) => {
+	await Users.find()
+		.then((users) => {
+			res.status(201).json(users);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
 
 app.use(
@@ -180,9 +196,40 @@ app.get("/movies/director/:name", (req, res) => {
 	res.send("Successful GET request returning data on a director by name");
 });
 
-// #5 Create a new user
-app.post("/users/", (req, res) => {
-	res.send("Successful POST request creating a new user");
+//Add a user
+/* We’ll expect JSON in this format
+{
+  ID: Integer,
+  Username: String,
+  Password: String,
+  Email: String,
+  Birthday: Date
+}*/
+app.post("/users", async (req, res) => {
+	await Users.findOne({ Username: req.body.Username })
+		.then((user) => {
+			if (user) {
+				return res.status(400).send(req.body.Username + "already exists");
+			} else {
+				Users.create({
+					Username: req.body.Username,
+					Password: req.body.Password,
+					Email: req.body.Email,
+					Birthday: req.body.Birthday,
+				})
+					.then((user) => {
+						res.status(201).json(user);
+					})
+					.catch((error) => {
+						console.error(error);
+						res.status(500).send("Error: " + error);
+					});
+			}
+		})
+		.catch((error) => {
+			console.error(error);
+			res.status(500).send("Error: " + error);
+		});
 });
 
 // #6 Update a user's info by username
