@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -210,11 +209,11 @@
 				</tr>
 				<tr>
 					<td>Add movie to favorites</td>
-					<td><code>/users/:username/favorites/:movieId</code></td>
+					<td><code>/users/:username/movies/:movieId</code></td>
 					<td>POST</td>
 					<td><code>username, movieId</code></td>
-					<td><code>POST /JohnDoe/favorites/{movie}</code></td>
-					<td>Text confirming movie has been added to favorites</td>
+					<td><code>POST /users/JohnDoe/movies/60a7b2e</code></td>
+					<td>JSON response confirming the movie has been added to favorites</td>
 				</tr>
 				<tr>
 					<td>Remove movie from favorites</td>
@@ -230,7 +229,7 @@
 					<td>DELETE</td>
 					<td><code>username</code></td>
 					<td><code>DELETE /users/JohnDoe</code></td>
-					<td>Text confirming user has been deregistered</td>
+					<td>{"message": "User JohnDoe was deleted", "status": 200}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -238,6 +237,14 @@
 		<section>
 			<h2>Additional Notes</h2>
 			<p>Ensure that your requests include proper authentication headers if needed. Any queries must be URL-encoded.</p>
+		</section>
+
+		<section>
+			<h2>Authentication</h2>
+			<p>
+				Currently, no authentication is required to access the API endpoints. However, this will change in a future version. All requests to secure endpoints must be accompanied by an authentication
+				header.
+			</p>
 		</section>
 
 		<footer>

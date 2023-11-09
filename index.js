@@ -8,136 +8,20 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const Models = require("./models.js");
 
+const app = express();
+
 const Movies = Models.Movie;
 const Users = Models.User;
 
 mongoose.connect("mongodb://localhost:27017/ACDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
-const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), { flags: "a" });
-
-const movieDataJSON = [
-	{
-		title: "Inception",
-		description: "A thief enters the dreams of others to steal secrets.",
-		genre: "Science Fiction",
-		director: "Christopher Nolan",
-		actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
-		imageURL: "http://example.com/inception.jpg",
-		favorited: false,
-	},
-	{
-		title: "The Dark Knight",
-		description: "Batman faces the Joker, a criminal mastermind.",
-		genre: "Action",
-		director: "Christopher Nolan",
-		actors: ["Christian Bale", "Heath Ledger"],
-		imageURL: "http://example.com/dark_knight.jpg",
-		favorited: true,
-	},
-	{
-		title: "Forrest Gump",
-		description: "A man with a low IQ influences various historical events in the 20th century USA.",
-		genre: "Drama",
-		director: "Robert Zemeckis",
-		actors: ["Tom Hanks"],
-		imageURL: "http://example.com/forrest_gump.jpg",
-		favorited: false,
-	},
-	{
-		title: "Avatar",
-		description: "A paraplegic Marine is sent to the moon Pandora on a unique mission.",
-		genre: "Science Fiction",
-		director: "James Cameron",
-		actors: ["Sam Worthington", "Zoe Saldana"],
-		imageURL: "http://example.com/avatar.jpg",
-		favorited: false,
-	},
-	{
-		title: "Titanic",
-		description: "A romance blooms on the ill-fated R.M.S. Titanic.",
-		genre: "Romance",
-		director: "James Cameron",
-		actors: ["Leonardo DiCaprio", "Kate Winslet"],
-		imageURL: "http://example.com/titanic.jpg",
-		favorited: true,
-	},
-	{
-		title: "The Godfather",
-		description: "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
-		genre: "Crime",
-		director: "Francis Ford Coppola",
-		actors: ["Marlon Brando", "Al Pacino"],
-		imageURL: "http://example.com/godfather.jpg",
-		favorited: false,
-	},
-	{
-		title: "Jurassic Park",
-		description: "A theme park with genetically-engineered dinosaurs turns into a nightmare.",
-		genre: "Science Fiction",
-		director: "Steven Spielberg",
-		actors: ["Sam Neill", "Laura Dern"],
-		imageURL: "http://example.com/jurassic_park.jpg",
-		favorited: true,
-	},
-	{
-		title: "Star Wars: A New Hope",
-		description: "Luke Skywalker joins forces to defeat the Galactic Empire.",
-		genre: "Science Fiction",
-		director: "George Lucas",
-		actors: ["Mark Hamill", "Harrison Ford"],
-		imageURL: "http://example.com/star_wars.jpg",
-		favorited: false,
-	},
-	{
-		title: "The Shawshank Redemption",
-		description: "Two imprisoned men bond over the years, finding solace and redemption.",
-		genre: "Drama",
-		director: "Frank Darabont",
-		actors: ["Tim Robbins", "Morgan Freeman"],
-		imageURL: "http://example.com/shawshank.jpg",
-		favorited: true,
-	},
-	{
-		title: "The Matrix",
-		description: "A computer hacker discovers a simulated reality controlled by machines.",
-		genre: "Science Fiction",
-		director: "The Wachowskis",
-		actors: ["Keanu Reeves", "Laurence Fishburne"],
-		imageURL: "http://example.com/matrix.jpg",
-		favorited: false,
-	},
-];
-
-const userDataJSON = [
-	{
-		username: "user1",
-		password: "password1",
-		email: "1@a.net",
-		favorites: ["The Dark Knight", "Titanic"],
-	},
-	{
-		username: "user2",
-		password: "password2",
-		email: "2@a.net",
-		favorites: ["The Shawshank Redemption", "The Dark Knight"],
-	},
-];
-
-const movieData = JSON.parse(JSON.stringify(movieDataJSON));
-
-const userData = JSON.parse(JSON.stringify(userDataJSON));
-
+app.use(methodOverride());
 app.use(express.static("public"));
 
-// Combines logging info from request and response
+const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), { flags: "a" });
 app.use(morgan("combined", { stream: accessLogStream }));
-app.use(morgan("common"));
-
-app.use(bodyParser.json());
 
 app.get("/documentation", (req, res) => {
 	res.sendFile(path.join(__dirname, "public", "documentation.html"));
@@ -147,53 +31,76 @@ app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.get("/secreturl", (req, res) => {
-	res.send("This is a secret url with super top-secret content.");
-});
-
-app.get("/movies", (req, res) => {
-	res.json(movieData);
-});
+// ROUTING
 
 // Get all users
 app.get("/users", async (req, res) => {
 	await Users.find()
 		.then((users) => {
-			res.status(201).json(users);
+			res.status(200).json(users);
 		})
 		.catch((err) => {
 			console.error(err);
 			res.status(500).send("Error: " + err);
 		});
 });
-
-app.use(
-	bodyParser.urlencoded({
-		extended: true,
-	})
-);
-
-app.use(bodyParser.json());
-app.use(methodOverride());
+// Get a user by username
+app.get("/users/:username", async (req, res) => {
+	try {
+		const user = await Users.findOne({ username: req.params.username });
+		if (!user) {
+			return res.status(404).send("User not found");
+		}
+		res.status(200).json(user);
+	} catch (err) {
+		console.error(err);
+		res.status(500).send("Error: " + err);
+	}
+});
 
 // #1 JSON data for movies
-app.get("/movies", (req, res) => {
-	res.send("Successful GET request returning data on all the movies");
+app.get("/movies", async (req, res) => {
+	await Movies.find()
+		.then((movies) => {
+			res.status(201).json(movies);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
-
 // #2 JSON data for a single movie by title
-app.get("/movies/:title", (req, res) => {
-	res.send("Successful GET request returning data on a single movie");
+app.get("/movies/:title", async (req, res) => {
+	await Movies.findOne({ title: req.params.title })
+		.then((movie) => {
+			res.status(201).json(movie);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
-
 // #3 JSON data for a genre by name
-app.get("/movies/genre/:name", (req, res) => {
-	res.send("Successful GET request returning data on a genre by name");
+app.get("/movies/genre/:name", async (req, res) => {
+	await Movies.findOne({ "genre.name": req.params.name })
+		.then((movie) => {
+			res.status(201).json(movie.genre);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
-
 // #4 JSON data for a director by name
-app.get("/movies/director/:name", (req, res) => {
-	res.send("Successful GET request returning data on a director by name");
+app.get("/movies/director/:name", async (req, res) => {
+	await Movies.findOne({ "director.name": req.params.name })
+		.then((movie) => {
+			res.status(201).json(movie.director);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
 
 //Add a user
@@ -206,16 +113,16 @@ app.get("/movies/director/:name", (req, res) => {
   Birthday: Date
 }*/
 app.post("/users", async (req, res) => {
-	await Users.findOne({ Username: req.body.Username })
+	await Users.findOne({ username: req.body.username })
 		.then((user) => {
 			if (user) {
-				return res.status(400).send(req.body.Username + "already exists");
+				return res.status(400).send(req.body.username + "already exists");
 			} else {
 				Users.create({
-					Username: req.body.Username,
-					Password: req.body.Password,
-					Email: req.body.Email,
-					Birthday: req.body.Birthday,
+					username: req.body.username,
+					password: req.body.password,
+					email: req.body.email,
+					birthday: req.body.birthday,
 				})
 					.then((user) => {
 						res.status(201).json(user);
@@ -233,23 +140,66 @@ app.post("/users", async (req, res) => {
 });
 
 // #6 Update a user's info by username
-app.put("/users/:username", (req, res) => {
-	res.send("Successful PUT request updating a user's info by username");
+app.put("/users/:username", async (req, res) => {
+	await Users.findOneAndUpdate({ username: req.params.username }, { $set: { ...req.body } }, { new: true })
+		.then((updatedUser) => {
+			res.json(updatedUser);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
 
-// #7 Add a movie to a user's list of favorites
-app.post("/users/:username/favorites", (req, res) => {
-	res.send("Successful POST request adding a movie to a user's list of favorites");
+// Add a movie to a user's list of favorites
+app.post("/users/:username/movies/:movieID", async (req, res) => {
+	await Users.findOneAndUpdate(
+		{ username: req.params.username },
+		{
+			$push: { favoriteMovies: req.params.movieID },
+		},
+		{ new: true }
+	) // This line makes sure that the updated document is returned
+		.then((updatedUser) => {
+			res.json(updatedUser);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
 
-// #8 Remove a movie from a user's list of favorites
-app.delete("/users/:username/favorites/:title", (req, res) => {
-	res.send("Successful DELETE request removing a movie from a user's list of favorites");
+// Remove a movie from a user's list of favorites
+app.delete("/users/:username/movies/:movieID", async (req, res) => {
+	await Users.findOneAndUpdate(
+		{ username: req.params.username },
+		{
+			$pull: { favoriteMovies: req.params.movieID },
+		},
+		{ new: true }
+	) // This line makes sure that the updated document is returned
+		.then((updatedUser) => {
+			res.json(updatedUser);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error: " + err);
+		});
 });
 
-// #9 Delete a user by username
-app.delete("/users/:username", (req, res) => {
-	res.send("Successful DELETE request deleting a user by username");
+// Delete a user by username
+app.delete("/users/:username", async (req, res) => {
+	console.log("Attempting to delete user:", req.params.username); // Debugging line
+	try {
+		const user = await Users.findOneAndRemove({ username: req.params.username });
+		if (!user) {
+			return res.status(404).send("User not found");
+		}
+		res.status(200).send("User deleted successfully");
+	} catch (err) {
+		console.error("Error during deletion:", err); // More detailed error logging
+		res.status(500).send("Server error");
+	}
 });
 
 app.use((err, req, res, next) => {
@@ -260,3 +210,6 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
 	console.log("Your app is listening on port 8080.");
 });
+
+// MongoDB connection error handling
+mongoose.connection.on("error", console.error.bind(console, "MongoDB connection error:"));
