@@ -10,6 +10,7 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const Models = require("./models.js");
 const router = express.Router();
+const { check, validationResult } = require("express-validator");
 
 const app = express();
 
@@ -23,6 +24,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const cors = require("cors");
+
+let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
+
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			if (!origin) return callback(null, true);
+			if (allowedOrigins.indexOf(origin) === -1) {
+				// If a specific origin isn't found on the list of allowed origins
+				let message = "The CORS policy for this application doesn't allow access from origin " + origin;
+				return callback(new Error(message), false);
+			}
+			return callback(null, true);
+		},
+	})
+);
 
 let auth = require("./auth")(app);
 
@@ -117,32 +136,49 @@ app.get("/movies/director/:name", passport.authenticate("jwt", { session: false 
   Email: String,
   Birthday: Date
 }*/
-app.post("/users", async (req, res) => {
-	await Users.findOne({ username: req.body.username })
-		.then((user) => {
-			if (user) {
-				return res.status(400).send(req.body.username + "already exists");
-			} else {
-				Users.create({
-					username: req.body.username,
-					password: req.body.password,
-					email: req.body.email,
-					birthday: req.body.birthday,
-				})
-					.then((user) => {
-						res.status(201).json(user);
+app.post(
+	"/users",
+	[
+		check("username", "Username is required").isLength({ min: 5 }),
+		check("username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
+		check("password", "Password is required").not().isEmpty(),
+		check("email", "Email does not appear to be valid").isEmail(),
+	],
+	async (req, res) => {
+		// check the validation object for errors
+		let errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			return res.status(422).json({ errors: errors.array() });
+		}
+
+		let hashedPassword = Users.hashPassword(req.body.password);
+		await Users.findOne({ username: req.body.username })
+			.then((user) => {
+				if (user) {
+					return res.status(400).send(req.body.username + "already exists");
+				} else {
+					Users.create({
+						username: req.body.username,
+						password: hashedPassword,
+						email: req.body.email,
+						birthday: req.body.birthday,
 					})
-					.catch((error) => {
-						console.error(error);
-						res.status(500).send("Error: " + error);
-					});
-			}
-		})
-		.catch((error) => {
-			console.error(error);
-			res.status(500).send("Error: " + error);
-		});
-});
+						.then((user) => {
+							res.status(201).json(user);
+						})
+						.catch((error) => {
+							console.error(error);
+							res.status(500).send("Error: " + error);
+						});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				res.status(500).send("Error: " + error);
+			});
+	}
+);
 
 // #6 Update a user's info by username
 app.put("/users/:username", passport.authenticate("jwt", { session: false }), async (req, res) => {
@@ -230,8 +266,9 @@ app.use((err, req, res, next) => {
 	res.status(500).send("Something broke!");
 });
 
-app.listen(8080, () => {
-	console.log("Your app is listening on port 8080.");
+const port = process.env.PORT || 8080;
+app.listen(port, "0.0.0.0", () => {
+	console.log("Listening on Port " + port);
 });
 
 // MongoDB connection error handling
