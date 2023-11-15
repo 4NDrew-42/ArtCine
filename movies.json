@@ -1,5 +1,4 @@
- [
-    {
+{
       "title": "Inception",
       "description": "A thief enters the dreams of others to steal secrets.",
       "genre": "Science Fiction",
@@ -7,7 +6,7 @@
       "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
       "imageURL": "http://example.com/inception.jpg",
       "favorited": false
-    },
+    }
     {
       "title": "The Dark Knight",
       "description": "Batman faces the Joker, a criminal mastermind.",
@@ -16,7 +15,7 @@
       "actors": ["Christian Bale", "Heath Ledger"],
       "imageURL": "http://example.com/dark_knight.jpg",
       "favorited": true
-    },
+    }
     {
       "title": "Forrest Gump",
       "description": "A man with a low IQ influences various historical events in the 20th century USA.",
@@ -25,7 +24,7 @@
       "actors": ["Tom Hanks"],
       "imageURL": "http://example.com/forrest_gump.jpg",
       "favorited": false
-    },
+    }
     {
       "title": "Avatar",
       "description": "A paraplegic Marine is sent to the moon Pandora on a unique mission.",
@@ -34,7 +33,7 @@
       "actors": ["Sam Worthington", "Zoe Saldana"],
       "imageURL": "http://example.com/avatar.jpg",
       "favorited": false
-    },
+    }
     {
       "title": "Titanic",
       "description": "A romance blooms on the ill-fated R.M.S. Titanic.",
@@ -43,7 +42,7 @@
       "actors": ["Leonardo DiCaprio", "Kate Winslet"],
       "imageURL": "http://example.com/titanic.jpg",
       "favorited": true
-    },
+    }
     {
       "title": "The Godfather",
       "description": "The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
@@ -52,7 +51,7 @@
       "actors": ["Marlon Brando", "Al Pacino"],
       "imageURL": "http://example.com/godfather.jpg",
       "favorited": false
-    },
+    }
     {
       "title": "Jurassic Park",
       "description": "A theme park with genetically-engineered dinosaurs turns into a nightmare.",
@@ -61,7 +60,7 @@
       "actors": ["Sam Neill", "Laura Dern"],
       "imageURL": "http://example.com/jurassic_park.jpg",
       "favorited": true
-    },
+    }
     {
       "title": "Star Wars: A New Hope",
       "description": "Luke Skywalker joins forces to defeat the Galactic Empire.",
@@ -70,7 +69,7 @@
       "actors": ["Mark Hamill", "Harrison Ford"],
       "imageURL": "http://example.com/star_wars.jpg",
       "favorited": false
-    },
+    }
     {
       "title": "The Shawshank Redemption",
       "description": "Two imprisoned men bond over the years, finding solace and redemption.",
@@ -79,7 +78,7 @@
       "actors": ["Tim Robbins", "Morgan Freeman"],
       "imageURL": "http://example.com/shawshank.jpg",
       "favorited": true
-    },
+    }
     {
       "title": "The Matrix",
       "description": "A computer hacker discovers a simulated reality controlled by machines.",
@@ -89,4 +88,4 @@
       "imageURL": "http://example.com/matrix.jpg",
       "favorited": false
     }
-  ]
+  
