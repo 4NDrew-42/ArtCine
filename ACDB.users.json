@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "6545d811c69206ee257ee49a"
+  },
+  "userid": 1,
+  "username": "john_doe",
+  "password": "hashed_password123",
+  "email": "johndoe@email.com",
+  "Birthday": {
+    "$date": "1974-06-15T00:00:00.000Z"
+  },
+  "favorites": [
+    1,
+    4,
+    "movieid: 10"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6545d811c69206ee257ee49b"
+  },
+  "userid": 2,
+  "username": "jane_smith",
+  "password": "hashed_password456",
+  "email": "janesmith@email.com",
+  "Birthday": {
+    "$date": "1980-09-05T00:00:00.000Z"
+  },
+  "favorites": [
+    2,
+    3
+  ]
+},
+{
+  "_id": {
+    "$oid": "6545d811c69206ee257ee49d"
+  },
+  "userid": 4,
+  "username": "jane_doe",
+  "password": "hashed_password321",
+  "email": "janedoe@email.com",
+  "Birthday": {
+    "$date": "2001-01-16T00:00:00.000Z"
+  },
+  "favorites": [
+    7,
+    8,
+    9
+  ]
+},
+{
+  "_id": {
+    "$oid": "6545d811c69206ee257ee49e"
+  },
+  "userid": 5,
+  "username": "john_brown",
+  "password": "hashed_password654",
+  "email": "brownjohn@email.com",
+  "Birthday": {
+    "$date": "1992-10-30T00:00:00.000Z"
+  },
+  "favorites": [
+    10,
+    11
+  ]
+}]
