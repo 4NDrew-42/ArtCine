@@ -26,8 +26,10 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require("cors");
+app.use(cors());
 
-let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
+//Limit Access to API
+/*let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
 
 app.use(
 	cors({
@@ -41,7 +43,7 @@ app.use(
 			return callback(null, true);
 		},
 	})
-);
+); */
 
 let auth = require("./auth")(app);
 
