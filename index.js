@@ -11,8 +11,6 @@ const mongoose = require("mongoose");
 const Models = require("./models.js");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
-const bcrypt = require("bcrypt");
-module.exports.bcrypt = bcrypt;
 
 const app = express();
 
