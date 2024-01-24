@@ -7,7 +7,7 @@
   "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
   "directorid": "Jonathan Demme",
   "genreid": "Thriller",
-  "imageurl": "https://www.imdb.com/title/tt0102926/mediaviewer/rm3242988544/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1MmEtYzM1M2ZmMGMwMTU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
   "featured": true,
   "director": {
     "name": "Jonathan Demme",
@@ -34,7 +34,7 @@
   "movieid": 8,
   "title": "Akira",
   "description": "In a post-apocalyptic Tokyo, a young biker named Kaneda discovers government secrets while searching for his kidnapped friend.",
-  "imageurl": "akira.png",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BNjFmNWYzZjMtYWIyZi00NDVmLWIxY2EtN2RiMjZiMDk4MzcyXkEyXkFqcGdeQXVyMTg2NjYzOA@@._V1_.jpg",
   "featured": true,
   "director": {
     "name": "Katsushiro Otomo",
@@ -56,7 +56,7 @@
   "movieid": 9,
   "title": "The Fountain",
   "description": "The Fountain is a tale of a man traveling through time, as a 16th-century conquistador, a 21st-century scientist, and a future astronaut, to save the woman he loves.",
-  "imageurl": "https://www.imdb.com/title/tt0414993/mediaviewer/rm2671676416/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BMTU5OTczMTcxMV5BMl5BanBnXkFtZTcwNDg3MTEzMw@@._V1_.jpg",
   "featured": false,
   "director": {
     "name": "Darren Aronofsky",
@@ -78,7 +78,7 @@
   "movieid": 11,
   "title": "Pi",
   "description": "The story of a paranoid mathematician who believes there are patterns everywhere in nature, leading him on a descent into obsession and madness.",
-  "imageurl": "https://www.imdb.com/title/tt0138704/mediaviewer/rm1936067329/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BMTk3MThhNGEtY2E4NS00MWMwLTg4MzQtMTk4ZTcwYzRlNDNiXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
   "featured": false,
   "director": {
     "name": "Darren Aronofsky",
@@ -100,7 +100,7 @@
   "movieid": 2,
   "title": "Interstellar",
   "description": "A team of astronauts undertake a mission through a time-warping wormhole near Saturn in a quest to find humanity a new home across the cosmos.",
-  "imageurl": "https://www.imdb.com/title/tt0816692/mediaviewer/rm4043724800/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
   "featured": true,
   "director": {
     "name": "Christopher Nolan",
@@ -120,7 +120,7 @@
   "movieid": 3,
   "title": "Inception",
   "description": "A thief who enters the dreams of others to steal secrets leads a last heist to secure his freedom.",
-  "imageurl": "https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BZGFjOTRiYjgtYjEzMS00ZjQ2LTkzY2YtOGQ0NDI2NTVjOGFmXkEyXkFqcGdeQXVyNDQ5MDYzMTk@._V1_FMjpg_UX1000_.jpg",
   "featured": false,
   "director": {
     "name": "Christopher Nolan",
@@ -140,7 +140,7 @@
   "movieid": 5,
   "title": "Lost in Translation",
   "description": "A fading actor and a neglected young woman form an unlikely bond in Tokyo.",
-  "imageurl": "https://www.imdb.com/title/tt0335266/mediaviewer/rm4226351616/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BMTUxMzk0NDg1MV5BMl5BanBnXkFtZTgwNDg0NjkxMDI@._V1_.jpg",
   "featured": false,
   "director": {
     "name": "Sofia Coppola",
@@ -160,7 +160,7 @@
   "movieid": 6,
   "title": "Psycho",
   "description": "A secretary embezzles money and checks into a remote motel run by a disturbed innkeeper.",
-  "imageurl": "https://www.imdb.com/title/tt0054215/mediaviewer/rm1902135552/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BNTQwNDM1YzItNDAxZC00NWY2LTk0M2UtNDIwNWI5OGUyNWUxXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg",
   "featured": true,
   "director": {
     "name": "Alfred Hitchcock",
@@ -186,7 +186,7 @@
   "movieid": 7,
   "title": "The Birds",
   "description": "A series of sudden and unexplained violent bird attacks terrorize the people of Bodega Bay.",
-  "imageurl": "https://www.imdb.com/title/tt0056869/mediaviewer/rm1418251264/?ref_=tt_ov_i",
+  "imageurl": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p3949_p_v8_bc.jpg",
   "featured": false,
   "director": {
     "name": "Alfred Hitchcock",
@@ -212,7 +212,7 @@
   "movieid": 10,
   "title": "Juliette of the Spirits",
   "description": "A surreal tale of a woman named Juliette who, amidst a failing marriage, seeks answers through spiritual mediums and her own subconscious.",
-  "imageurl": "https://www.imdb.com/title/tt0059229/mediaviewer/rm1647203328/?ref_=tt_ov_i",
+  "imageurl": "https://m.media-amazon.com/images/M/MV5BM2U4OWQ3MjEtYTQ4Zi00MDY1LTg2YjgtNmJkNzI3MTM1YjJjXkEyXkFqcGdeQXVyNzM0MTUwNTY@._V1_.jpg",
   "featured": true,
   "director": {
     "name": "Federico Fellini",
