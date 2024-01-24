@@ -4,7 +4,7 @@
       "genre": "Science Fiction",
       "director": "Christopher Nolan",
       "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
-      "imageURL": "http://example.com/inception.jpg",
+      "imageURL": "https://img.cinemablend.com/quill/e/b/2/a/4/5/eb2a45f29e17a8d5e40b097b0eff18ebcd86b100.jpg",
       "favorited": false
     }
     {
@@ -13,7 +13,7 @@
       "genre": "Action",
       "director": "Christopher Nolan",
       "actors": ["Christian Bale", "Heath Ledger"],
-      "imageURL": "http://example.com/dark_knight.jpg",
+      "imageURL": "https://cdn.europosters.eu/image/1300/art-photo/the-dark-knight-trilogy-a-fire-will-rise-i184446.jpg",
       "favorited": true
     }
     {
@@ -22,7 +22,7 @@
       "genre": "Drama",
       "director": "Robert Zemeckis",
       "actors": ["Tom Hanks"],
-      "imageURL": "http://example.com/forrest_gump.jpg",
+      "imageURL": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
       "favorited": false
     }
     {
@@ -31,7 +31,7 @@
       "genre": "Science Fiction",
       "director": "James Cameron",
       "actors": ["Sam Worthington", "Zoe Saldana"],
-      "imageURL": "http://example.com/avatar.jpg",
+      "imageURL": "https://m.media-amazon.com/images/M/MV5BZDA0OGQxNTItMDZkMC00N2UyLTg3MzMtYTJmNjg3Nzk5MzRiXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
       "favorited": false
     }
     {
@@ -40,7 +40,7 @@
       "genre": "Romance",
       "director": "James Cameron",
       "actors": ["Leonardo DiCaprio", "Kate Winslet"],
-      "imageURL": "http://example.com/titanic.jpg",
+      "imageURL": "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX1000_.jpg",
       "favorited": true
     }
     {
@@ -49,7 +49,7 @@
       "genre": "Crime",
       "director": "Francis Ford Coppola",
       "actors": ["Marlon Brando", "Al Pacino"],
-      "imageURL": "http://example.com/godfather.jpg",
+      "imageURL": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
       "favorited": false
     }
     {
@@ -58,7 +58,7 @@
       "genre": "Science Fiction",
       "director": "Steven Spielberg",
       "actors": ["Sam Neill", "Laura Dern"],
-      "imageURL": "http://example.com/jurassic_park.jpg",
+      "imageURL": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_FMjpg_UX1000_.jpg",
       "favorited": true
     }
     {
@@ -67,7 +67,7 @@
       "genre": "Science Fiction",
       "director": "George Lucas",
       "actors": ["Mark Hamill", "Harrison Ford"],
-      "imageURL": "http://example.com/star_wars.jpg",
+      "imageURL": "https://m.media-amazon.com/images/I/81RZipc6yOL._AC_SY879_.jpg",
       "favorited": false
     }
     {
@@ -76,7 +76,7 @@
       "genre": "Drama",
       "director": "Frank Darabont",
       "actors": ["Tim Robbins", "Morgan Freeman"],
-      "imageURL": "http://example.com/shawshank.jpg",
+      "imageURL": "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
       "favorited": true
     }
     {
@@ -85,7 +85,7 @@
       "genre": "Science Fiction",
       "director": "The Wachowskis",
       "actors": ["Keanu Reeves", "Laurence Fishburne"],
-      "imageURL": "http://example.com/matrix.jpg",
+      "imageURL": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
       "favorited": false
     }
   
