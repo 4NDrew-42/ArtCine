@@ -88,19 +88,16 @@ app.get('/users/:username', passport.authenticate('jwt', { session: false }), as
 });
 
 // #1 JSON data for movies
-app.get(
-	'/movies', //passport.authenticate("jwt", { session: false }),
-	async (req, res) => {
-		await Movies.find()
-			.then((movies) => {
-				res.status(201).json(movies);
-			})
-			.catch((err) => {
-				console.error(err);
-				res.status(500).send('Error: ' + err);
-			});
-	}
-);
+app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
+	await Movies.find()
+		.then((movies) => {
+			res.status(200).json(movies);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: ' + err);
+		});
+});
 // #2 JSON data for a single movie by title
 app.get('/movies/:title', passport.authenticate('jwt', { session: false }), async (req, res) => {
 	await Movies.findOne({ title: req.params.title })
