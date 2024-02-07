@@ -1,34 +1,34 @@
 {
-  "name": "artcine",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "express-validator": "^7.0.1",
-    "fs": "^0.0.1-security",
-    "method-override": "^3.0.0",
-    "mongoose": "^7.6.4",
-    "morgan": "^1.10.0",
-    "passport": "^0.6.0",
-    "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0",
-    "path": "^0.12.7",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "jsonwebtoken": "^9.0.2",
-    "nodemon": "^3.0.1"
-  }
+	"name": "artcine",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js",
+		"dev": "nodemon index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.20.2",
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"express-validator": "^7.0.1",
+		"fs": "^0.0.1-security",
+		"method-override": "^3.0.0",
+		"mongoose": "^7.6.4",
+		"morgan": "^1.10.0",
+		"passport": "^0.6.0",
+		"passport-jwt": "^4.0.1",
+		"passport-local": "^1.0.0",
+		"path": "^0.12.7",
+		"uuid": "^9.0.1",
+		"jsonwebtoken": "^9.0.2"
+	},
+	"devDependencies": {
+		"nodemon": "^3.0.1"
+	}
 }
