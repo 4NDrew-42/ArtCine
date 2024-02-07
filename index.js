@@ -143,62 +143,62 @@ app.post(
 		check('email', 'Email does not appear to be valid').isEmail(),
 	],
 	async (req, res) => {
-		let errors = validationResult(req);
+		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(422).json({ errors: errors.array() });
 		}
 
 		try {
-			let hashedPassword = await bcrypt.hash(req.body.password, 10);
-			let user = await Users.findOne({ username: req.body.username });
+			const { username, password, email, birthday } = req.body;
+			let user = await Users.findOne({ username });
 			if (user) {
-				return res.status(400).send(`${req.body.username} already exists`);
-			} else {
-				user = await Users.create({
-					username: req.body.username,
-					password: hashedPassword,
-					email: req.body.email,
-					birthday: req.body.birthday,
-				});
-
-				// Generate a JWT token
-				const payload = { user: { id: user._id } };
-				const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }); // Use an environment variable for the secret
-
-				res.status(201).json({ user, token }); // Send back both the user object and the token
+				return res.status(400).send(`${username} already exists`);
 			}
+
+			const hashedPassword = await bcrypt.hash(password, 10);
+			user = await Users.create({
+				username,
+				password: hashedPassword,
+				email,
+				birthday,
+			});
+
+			// Generate a JWT token
+			const payload = { user: { id: user._id } };
+			const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+			res.status(201).json({ token, user }); // Prefer sending token first for clarity
 		} catch (error) {
-			console.error(error);
+			console.error('Server error:', error.message);
 			res.status(500).send('Server error');
 		}
 	}
 );
-// #6 Update a user's info by username
-app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
-	if (req.user.username !== req.params.username) {
-		return res.status(400).send('Permission denied');
-	}
-	await Users.findOneAndUpdate(
-		{ username: req.params.username },
-		{
-			$set: {
-				username: req.body.username,
-				password: req.body.password,
-				email: req.body.email,
-				birthday: req.body.birthday,
-			},
-		},
-		{ new: true }
-	)
-		.then((updatedUser) => {
-			res.json(updatedUser);
-		})
-		.catch((err) => {
-			console.error(err);
-			res.status(500).send('Error: ' + err);
-		});
-});
 
+// Updating user's info by username
+app.put('/users/:username', passport.authenticate('jwt', { session: false }), async (req, res) => {
+	const { username, password, email, birthday } = req.body;
+	try {
+		if (req.user.username !== req.params.username) {
+			return res.status(403).send('Permission denied'); // 403 Forbidden might be more appropriate here
+		}
+
+		const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
+		const update = { username, email, birthday };
+		if (hashedPassword) update.password = hashedPassword;
+
+		const updatedUser = await Users.findOneAndUpdate({ username: req.params.username }, { $set: update }, { new: true });
+
+		if (!updatedUser) {
+			return res.status(404).send('User not found');
+		}
+
+		res.json(updatedUser);
+	} catch (err) {
+		console.error('Update error:', err.message);
+		res.status(500).send('Server error');
+	}
+});
 // Add a movie to a user's list of favorites
 app.post('/users/:username/movies/:movieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
 	await Users.findOneAndUpdate(
