@@ -8,6 +8,8 @@ const morgan = require('morgan');
 const uuid = require('uuid');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
 const Models = require('./models.js');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
@@ -217,7 +219,7 @@ app.post('/users/:username/movies/:movieId', passport.authenticate('jwt', { sess
 	await Users.findOneAndUpdate(
 		{ username: req.params.username },
 		{
-			$addToSet: { favoriteMovies: mongoose.Types.ObjectId(req.params.movieId) },
+			$addToSet: { favoriteMovies: req.params.movieId },
 		},
 		{ new: true }
 	)
@@ -234,7 +236,7 @@ app.delete('/users/:username/movies/:movieId', passport.authenticate('jwt', { se
 	await Users.findOneAndUpdate(
 		{ username: req.params.username },
 		{
-			$pull: { favoriteMovies: mongoose.Types.ObjectId(req.params.movieId) },
+			$pull: { favoriteMovies: req.params.movieId },
 		},
 		{ new: true }
 	)
